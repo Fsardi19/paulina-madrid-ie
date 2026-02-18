@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "proyecto": "Modelo Financiero de Permanencia - Paulina en Madrid",
+    "version": "2.0",
+    "fecha_generacion": "2026-02-18T16:56:56.980504",
+    "generado_por": "Claude Code - Financial Analysis Skill"
+  },
+  "perfil": {
+    "nombre": "Paulina",
+    "edad": 19,
+    "menor_26": true,
+    "universidad": "IE University",
+    "programa": "Grado 4 anos",
+    "ciudad": "Madrid",
+    "pais_origen": "Colombia",
+    "ano_inicio": 2026,
+    "duracion_anos": 4
+  },
+  "supuestos": {
+    "inflacion_espana": 0.03,
+    "descuento_matricula_disponible": 0.4,
+    "meses_por_ano": 12,
+    "tasas_cambio": {
+      "EUR_USD": 1.08,
+      "EUR_COP": 4500
+    }
+  },
+  "costos_base": {
+    "matricula": {
+      "descripcion": "Matricula anual IE University",
+      "anual_base": 29000,
+      "tipo": "anual",
+      "fijo": true
+    },
+    "vivienda": {
+      "descripcion": "Apartamento 2 habitaciones compartido (parte de Paulina)",
+      "min": 600,
+      "medio": 1000,
+      "max": 1100,
+      "tipo": "mensual",
+      "compartido": true,
+      "total_apartamento": 2000
+    },
+    "electricidad": {
+      "descripcion": "Electricidad (parte de Paulina)",
+      "min": 35,
+      "medio": 68,
+      "max": 100,
+      "tipo": "mensual",
+      "compartido": true
+    },
+    "gas_calefaccion": {
+      "descripcion": "Gas y calefaccion (parte de Paulina)",
+      "min": 50,
+      "medio": 88,
+      "max": 125,
+      "tipo": "mensual",
+      "compartido": true
+    },
+    "agua": {
+      "descripcion": "Agua (parte de Paulina)",
+      "min": 20,
+      "medio": 25,
+      "max": 30,
+      "tipo": "mensual",
+      "compartido": true
+    },
+    "internet": {
+      "descripcion": "Internet fibra (parte de Paulina)",
+      "min": 15,
+      "medio": 23,
+      "max": 30,
+      "tipo": "mensual",
+      "compartido": true
+    },
+    "celular": {
+      "descripcion": "Plan celular",
+      "min": 20,
+      "medio": 40,
+      "max": 60,
+      "tipo": "mensual",
+      "compartido": false
+    },
+    "supermercado": {
+      "descripcion": "Alimentacion y supermercado",
+      "min": 200,
+      "medio": 300,
+      "max": 400,
+      "tipo": "mensual",
+      "compartido": false
+    },
+    "transporte": {
+      "descripcion": "Abono transporte publico Madrid",
+      "min": 8,
+      "medio": 8,
+      "max": 55,
+      "tipo": "mensual",
+      "nota": "8 EUR para menores de 26 anos, 55 EUR normal"
+    },
+    "seguro_medico": {
+      "descripcion": "Seguro medico privado espanol",
+      "min": 35,
+      "medio": 46,
+      "max": 57,
+      "tipo": "mensual",
+      "obligatorio": true
+    },
+    "ocio_cultura": {
+      "descripcion": "Ocio, restaurantes, cultura, salidas",
+      "min": 50,
+      "medio": 150,
+      "max": 300,
+      "tipo": "mensual",
+      "opcional": true,
+      "nota": "No incluido en guia IE - estimado"
+    },
+    "ropa_personal": {
+      "descripcion": "Ropa, higiene, cuidado personal",
+      "min": 30,
+      "medio": 75,
+      "max": 150,
+      "tipo": "mensual",
+      "opcional": true
+    },
+    "materiales_estudio": {
+      "descripcion": "Libros, materiales, software educativo",
+      "min": 25,
+      "medio": 50,
+      "max": 100,
+      "tipo": "mensual",
+      "opcional": true
+    },
+    "vuelos_colombia": {
+      "descripcion": "Vuelos Colombia-Espana (ida y vuelta)",
+      "min": 800,
+      "medio": 1000,
+      "max": 1400,
+      "tipo": "por_viaje",
+      "viajes_por_ano": 2,
+      "nota": "Estimado 2 viajes/ano (verano y navidad)"
+    },
+    "emergencias": {
+      "descripcion": "Fondo de emergencia",
+      "porcentaje_del_total": 0.05,
+      "min_porcentaje": 0.05,
+      "max_porcentaje": 0.1,
+      "tipo": "porcentaje",
+      "opcional": true
+    }
+  },
+  "categorias": {
+    "fijas": [
+      "vivienda",
+      "electricidad",
+      "gas_calefaccion",
+      "agua",
+      "internet",
+      "celular",
+      "supermercado",
+      "transporte",
+      "seguro_medico"
+    ],
+    "opcionales": [
+      "ocio_cultura",
+      "ropa_personal",
+      "materiales_estudio",
+      "vuelos_colombia",
+      "emergencias"
+    ],
+    "compartidas": [
+      "vivienda",
+      "electricidad",
+      "gas_calefaccion",
+      "agua",
+      "internet"
+    ]
+  },
+  "notas": [
+    "Datos de costos basados en Guia Oficial IE Madrid",
+    "Viajes Colombia-Espana estimados segun precios promedio 2024-2025",
+    "Ocio y cultura no incluido en guia IE - valores estimados",
+    "Transporte: 8 EUR/mes para menores de 26 anos (Abono Joven Madrid)",
+    "Emergencias calculadas como porcentaje del total (5-10%)"
+  ]
+}

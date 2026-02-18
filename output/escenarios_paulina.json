@@ -1,0 +1,480 @@
+{
+  "metadata": {
+    "fecha_generacion": "2026-02-18T16:56:56.981389",
+    "descripcion": "Tres escenarios financieros para la permanencia de Paulina en Madrid"
+  },
+  "escenarios": {
+    "austero": {
+      "nombre": "Austero",
+      "nivel": "min",
+      "descripcion": "Gastos minimos, sin extras, maximo ahorro",
+      "configuracion": {
+        "descuento_matricula": true,
+        "porcentaje_descuento": 0.4,
+        "viajes_por_ano": 1,
+        "incluir_opcionales": {
+          "ocio_cultura": false,
+          "ropa_personal": true,
+          "materiales_estudio": true,
+          "vuelos_colombia": true,
+          "emergencias": true
+        },
+        "porcentaje_emergencias": 0.05
+      },
+      "resumen_ano_1": {
+        "matricula_base": 29000,
+        "matricula_con_descuento": 17400.0,
+        "ahorro_por_descuento": 11600.0,
+        "gastos_mensuales": 1038,
+        "gastos_vida_anual": 13256,
+        "vuelos_anual": 800,
+        "emergencias_anual": 1532.8,
+        "total_anual": 32188.8,
+        "total_mensual_promedio": 2682.4
+      },
+      "desglose_mensual": {
+        "vivienda": {
+          "valor": 600,
+          "incluido": true,
+          "descripcion": "Apartamento 2 habitaciones compartido (parte de Paulina)",
+          "compartido": true
+        },
+        "electricidad": {
+          "valor": 35,
+          "incluido": true,
+          "descripcion": "Electricidad (parte de Paulina)",
+          "compartido": true
+        },
+        "gas_calefaccion": {
+          "valor": 50,
+          "incluido": true,
+          "descripcion": "Gas y calefaccion (parte de Paulina)",
+          "compartido": true
+        },
+        "agua": {
+          "valor": 20,
+          "incluido": true,
+          "descripcion": "Agua (parte de Paulina)",
+          "compartido": true
+        },
+        "internet": {
+          "valor": 15,
+          "incluido": true,
+          "descripcion": "Internet fibra (parte de Paulina)",
+          "compartido": true
+        },
+        "celular": {
+          "valor": 20,
+          "incluido": true,
+          "descripcion": "Plan celular",
+          "compartido": false
+        },
+        "supermercado": {
+          "valor": 200,
+          "incluido": true,
+          "descripcion": "Alimentacion y supermercado",
+          "compartido": false
+        },
+        "transporte": {
+          "valor": 8,
+          "incluido": true,
+          "descripcion": "Abono transporte publico Madrid",
+          "compartido": false
+        },
+        "seguro_medico": {
+          "valor": 35,
+          "incluido": true,
+          "descripcion": "Seguro medico privado espanol",
+          "compartido": false
+        },
+        "ocio_cultura": {
+          "valor": 0,
+          "incluido": false,
+          "descripcion": "Ocio, restaurantes, cultura, salidas"
+        },
+        "ropa_personal": {
+          "valor": 30,
+          "incluido": true,
+          "descripcion": "Ropa, higiene, cuidado personal",
+          "compartido": false
+        },
+        "materiales_estudio": {
+          "valor": 25,
+          "incluido": true,
+          "descripcion": "Libros, materiales, software educativo",
+          "compartido": false
+        }
+      },
+      "proyeccion_anual": [
+        {
+          "ano": 2026,
+          "numero_ano": 1,
+          "factor_inflacion": 1.0,
+          "matricula": 17400.0,
+          "gastos_vida": 13256.0,
+          "emergencias": 1532.8,
+          "total_anual": 32188.8,
+          "total_mensual_promedio": 2682.4
+        },
+        {
+          "ano": 2027,
+          "numero_ano": 2,
+          "factor_inflacion": 1.03,
+          "matricula": 17922.0,
+          "gastos_vida": 13653.68,
+          "emergencias": 1578.78,
+          "total_anual": 33154.46,
+          "total_mensual_promedio": 2762.87
+        },
+        {
+          "ano": 2028,
+          "numero_ano": 3,
+          "factor_inflacion": 1.0609,
+          "matricula": 18459.66,
+          "gastos_vida": 14063.29,
+          "emergencias": 1626.15,
+          "total_anual": 34149.1,
+          "total_mensual_promedio": 2845.76
+        },
+        {
+          "ano": 2029,
+          "numero_ano": 4,
+          "factor_inflacion": 1.0927,
+          "matricula": 19013.45,
+          "gastos_vida": 14485.19,
+          "emergencias": 1674.93,
+          "total_anual": 35173.57,
+          "total_mensual_promedio": 2931.13
+        }
+      ],
+      "totales": {
+        "total_4_anos_eur": 134665.93,
+        "total_4_anos_usd": 145439.21,
+        "total_4_anos_cop": 605996697.5,
+        "promedio_anual": 33666.48,
+        "promedio_mensual": 2805.54
+      }
+    },
+    "moderado": {
+      "nombre": "Moderado",
+      "nivel": "medio",
+      "descripcion": "Balance calidad-costo, vida comoda pero consciente",
+      "configuracion": {
+        "descuento_matricula": true,
+        "porcentaje_descuento": 0.4,
+        "viajes_por_ano": 2,
+        "incluir_opcionales": {
+          "ocio_cultura": true,
+          "ropa_personal": true,
+          "materiales_estudio": true,
+          "vuelos_colombia": true,
+          "emergencias": true
+        },
+        "porcentaje_emergencias": 0.05
+      },
+      "resumen_ano_1": {
+        "matricula_base": 29000,
+        "matricula_con_descuento": 17400.0,
+        "ahorro_por_descuento": 11600.0,
+        "gastos_mensuales": 1873,
+        "gastos_vida_anual": 24476,
+        "vuelos_anual": 2000,
+        "emergencias_anual": 2093.8,
+        "total_anual": 43969.8,
+        "total_mensual_promedio": 3664.15
+      },
+      "desglose_mensual": {
+        "vivienda": {
+          "valor": 1000,
+          "incluido": true,
+          "descripcion": "Apartamento 2 habitaciones compartido (parte de Paulina)",
+          "compartido": true
+        },
+        "electricidad": {
+          "valor": 68,
+          "incluido": true,
+          "descripcion": "Electricidad (parte de Paulina)",
+          "compartido": true
+        },
+        "gas_calefaccion": {
+          "valor": 88,
+          "incluido": true,
+          "descripcion": "Gas y calefaccion (parte de Paulina)",
+          "compartido": true
+        },
+        "agua": {
+          "valor": 25,
+          "incluido": true,
+          "descripcion": "Agua (parte de Paulina)",
+          "compartido": true
+        },
+        "internet": {
+          "valor": 23,
+          "incluido": true,
+          "descripcion": "Internet fibra (parte de Paulina)",
+          "compartido": true
+        },
+        "celular": {
+          "valor": 40,
+          "incluido": true,
+          "descripcion": "Plan celular",
+          "compartido": false
+        },
+        "supermercado": {
+          "valor": 300,
+          "incluido": true,
+          "descripcion": "Alimentacion y supermercado",
+          "compartido": false
+        },
+        "transporte": {
+          "valor": 8,
+          "incluido": true,
+          "descripcion": "Abono transporte publico Madrid",
+          "compartido": false
+        },
+        "seguro_medico": {
+          "valor": 46,
+          "incluido": true,
+          "descripcion": "Seguro medico privado espanol",
+          "compartido": false
+        },
+        "ocio_cultura": {
+          "valor": 150,
+          "incluido": true,
+          "descripcion": "Ocio, restaurantes, cultura, salidas",
+          "compartido": false
+        },
+        "ropa_personal": {
+          "valor": 75,
+          "incluido": true,
+          "descripcion": "Ropa, higiene, cuidado personal",
+          "compartido": false
+        },
+        "materiales_estudio": {
+          "valor": 50,
+          "incluido": true,
+          "descripcion": "Libros, materiales, software educativo",
+          "compartido": false
+        }
+      },
+      "proyeccion_anual": [
+        {
+          "ano": 2026,
+          "numero_ano": 1,
+          "factor_inflacion": 1.0,
+          "matricula": 17400.0,
+          "gastos_vida": 24476.0,
+          "emergencias": 2093.8,
+          "total_anual": 43969.8,
+          "total_mensual_promedio": 3664.15
+        },
+        {
+          "ano": 2027,
+          "numero_ano": 2,
+          "factor_inflacion": 1.03,
+          "matricula": 17922.0,
+          "gastos_vida": 25210.28,
+          "emergencias": 2156.61,
+          "total_anual": 45288.89,
+          "total_mensual_promedio": 3774.07
+        },
+        {
+          "ano": 2028,
+          "numero_ano": 3,
+          "factor_inflacion": 1.0609,
+          "matricula": 18459.66,
+          "gastos_vida": 25966.59,
+          "emergencias": 2221.31,
+          "total_anual": 46647.56,
+          "total_mensual_promedio": 3887.3
+        },
+        {
+          "ano": 2029,
+          "numero_ano": 4,
+          "factor_inflacion": 1.0927,
+          "matricula": 19013.45,
+          "gastos_vida": 26745.59,
+          "emergencias": 2287.95,
+          "total_anual": 48046.99,
+          "total_mensual_promedio": 4003.92
+        }
+      ],
+      "totales": {
+        "total_4_anos_eur": 183953.24,
+        "total_4_anos_usd": 198669.5,
+        "total_4_anos_cop": 827789591.09,
+        "promedio_anual": 45988.31,
+        "promedio_mensual": 3832.36
+      }
+    },
+    "comodo": {
+      "nombre": "Comodo",
+      "nivel": "max",
+      "descripcion": "Sin restricciones, todos los extras incluidos",
+      "configuracion": {
+        "descuento_matricula": true,
+        "porcentaje_descuento": 0.4,
+        "viajes_por_ano": 2,
+        "incluir_opcionales": {
+          "ocio_cultura": true,
+          "ropa_personal": true,
+          "materiales_estudio": true,
+          "vuelos_colombia": true,
+          "emergencias": true
+        },
+        "porcentaje_emergencias": 0.1
+      },
+      "resumen_ano_1": {
+        "matricula_base": 29000,
+        "matricula_con_descuento": 17400.0,
+        "ahorro_por_descuento": 11600.0,
+        "gastos_mensuales": 2507,
+        "gastos_vida_anual": 32884,
+        "vuelos_anual": 2800,
+        "emergencias_anual": 5028.4,
+        "total_anual": 55312.4,
+        "total_mensual_promedio": 4609.37
+      },
+      "desglose_mensual": {
+        "vivienda": {
+          "valor": 1100,
+          "incluido": true,
+          "descripcion": "Apartamento 2 habitaciones compartido (parte de Paulina)",
+          "compartido": true
+        },
+        "electricidad": {
+          "valor": 100,
+          "incluido": true,
+          "descripcion": "Electricidad (parte de Paulina)",
+          "compartido": true
+        },
+        "gas_calefaccion": {
+          "valor": 125,
+          "incluido": true,
+          "descripcion": "Gas y calefaccion (parte de Paulina)",
+          "compartido": true
+        },
+        "agua": {
+          "valor": 30,
+          "incluido": true,
+          "descripcion": "Agua (parte de Paulina)",
+          "compartido": true
+        },
+        "internet": {
+          "valor": 30,
+          "incluido": true,
+          "descripcion": "Internet fibra (parte de Paulina)",
+          "compartido": true
+        },
+        "celular": {
+          "valor": 60,
+          "incluido": true,
+          "descripcion": "Plan celular",
+          "compartido": false
+        },
+        "supermercado": {
+          "valor": 400,
+          "incluido": true,
+          "descripcion": "Alimentacion y supermercado",
+          "compartido": false
+        },
+        "transporte": {
+          "valor": 55,
+          "incluido": true,
+          "descripcion": "Abono transporte publico Madrid",
+          "compartido": false
+        },
+        "seguro_medico": {
+          "valor": 57,
+          "incluido": true,
+          "descripcion": "Seguro medico privado espanol",
+          "compartido": false
+        },
+        "ocio_cultura": {
+          "valor": 300,
+          "incluido": true,
+          "descripcion": "Ocio, restaurantes, cultura, salidas",
+          "compartido": false
+        },
+        "ropa_personal": {
+          "valor": 150,
+          "incluido": true,
+          "descripcion": "Ropa, higiene, cuidado personal",
+          "compartido": false
+        },
+        "materiales_estudio": {
+          "valor": 100,
+          "incluido": true,
+          "descripcion": "Libros, materiales, software educativo",
+          "compartido": false
+        }
+      },
+      "proyeccion_anual": [
+        {
+          "ano": 2026,
+          "numero_ano": 1,
+          "factor_inflacion": 1.0,
+          "matricula": 17400.0,
+          "gastos_vida": 32884.0,
+          "emergencias": 5028.4,
+          "total_anual": 55312.4,
+          "total_mensual_promedio": 4609.37
+        },
+        {
+          "ano": 2027,
+          "numero_ano": 2,
+          "factor_inflacion": 1.03,
+          "matricula": 17922.0,
+          "gastos_vida": 33870.52,
+          "emergencias": 5179.25,
+          "total_anual": 56971.77,
+          "total_mensual_promedio": 4747.65
+        },
+        {
+          "ano": 2028,
+          "numero_ano": 3,
+          "factor_inflacion": 1.0609,
+          "matricula": 18459.66,
+          "gastos_vida": 34886.64,
+          "emergencias": 5334.63,
+          "total_anual": 58680.93,
+          "total_mensual_promedio": 4890.08
+        },
+        {
+          "ano": 2029,
+          "numero_ano": 4,
+          "factor_inflacion": 1.0927,
+          "matricula": 19013.45,
+          "gastos_vida": 35933.23,
+          "emergencias": 5494.67,
+          "total_anual": 60441.35,
+          "total_mensual_promedio": 5036.78
+        }
+      ],
+      "totales": {
+        "total_4_anos_eur": 231406.45,
+        "total_4_anos_usd": 249918.97,
+        "total_4_anos_cop": 1041329025.34,
+        "promedio_anual": 57851.61,
+        "promedio_mensual": 4820.97
+      }
+    }
+  },
+  "comparativa": {
+    "austero": {
+      "total_4_anos": 134665.93,
+      "promedio_mensual": 2805.54,
+      "ahorro_beca_4_anos": 46400.0
+    },
+    "moderado": {
+      "total_4_anos": 183953.24,
+      "promedio_mensual": 3832.36,
+      "ahorro_beca_4_anos": 46400.0
+    },
+    "comodo": {
+      "total_4_anos": 231406.45,
+      "promedio_mensual": 4820.97,
+      "ahorro_beca_4_anos": 46400.0
+    }
+  }
+}
