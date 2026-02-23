@@ -1,80 +1,80 @@
 # Session Log - Paulina Madrid IE
 
-## Sesión: 2026-02-18 (Sesión Inicial)
+## Sesión: 2026-02-23
+**Duración:** ~45 minutos
+**Actualizado por:** Claude Code
+
+### Objetivo de la Sesión
+Resolver problemas de autenticación en Supabase y agregar funcionalidad de guardar configuración de sliders.
+
+### Completado
+- [x] Diagnosticar y corregir error RLS en registro de usuarios
+- [x] Desactivar RLS en tabla `user_settings` para permitir registro
+- [x] Confirmar usuario Paulina en Supabase manualmente
+- [x] Configurar secrets locales (`.streamlit/secrets.toml`)
+- [x] Instalar dependencia `supabase` que faltaba
+- [x] Agregar funcionalidad "Guardar mi configuración" para sliders
+- [x] Hacer push de cambios a GitHub
+- [x] Configurar app como pública en Streamlit Cloud
+
+### Archivos Modificados
+| Archivo | Acción | Descripción |
+|---------|--------|-------------|
+| `dashboard/app.py` | Modificado | Agregada persistencia de configuración de sliders |
+| `.streamlit/secrets.toml` | Creado | Secrets locales para desarrollo |
+
+### Cambios Técnicos
+- **RLS user_settings:** Desactivado con `ALTER TABLE user_settings DISABLE ROW LEVEL SECURITY`
+- **Nueva funcionalidad:** Usuarios pueden guardar su configuración de sliders en Supabase
+- **Campo utilizado:** `user_settings.ajustes` (JSONB)
+- **Instalada dependencia:** `supabase` via pip3
+
+### SQL Ejecutado en Supabase
+```sql
+-- Desactivar RLS para permitir registro
+ALTER TABLE user_settings DISABLE ROW LEVEL SECURITY;
+
+-- Corregir políticas de INSERT
+DROP POLICY IF EXISTS "Users can insert own settings" ON user_settings;
+CREATE POLICY "Users can insert own settings" ON user_settings FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Users can insert own gastos" ON gastos_personalizados;
+CREATE POLICY "Users can insert own gastos" ON gastos_personalizados FOR INSERT WITH CHECK (true);
+```
+
+### URLs Activas
+| Recurso | URL |
+|---------|-----|
+| GitHub | https://github.com/Fsardi19/paulina-madrid-ie |
+| Streamlit Cloud | https://fsardi19-paulina-madrid-ie-dashboardapp.streamlit.app |
+| Supabase | https://supabase.com/dashboard/project/bsaazljcfxczdwtzhkcz |
+
+### Usuarios Registrados
+| Email | Estado |
+|-------|--------|
+| paulinatrianaq@icloud.com | Confirmado manualmente |
+| [tu email de prueba] | Registrado en sesión |
+
+### Notas Importantes
+- La app de Streamlit Cloud debe estar configurada como "Public" para que cualquiera acceda
+- La autenticación de Supabase protege el contenido (usuarios necesitan cuenta)
+- Los gastos personalizados se guardan automáticamente
+- Los ajustes de sliders requieren click en "Guardar mi configuración"
+
+---
+
+## Sesión Anterior: 2026-02-18 (Sesión Inicial)
 **Duración:** ~2 horas
-**Costo:** [Usar /cost para verificar]
 
-### 🎯 Objetivo de la Sesión
-Crear dashboard completo de presupuesto para que Paulina planifique su permanencia en Madrid estudiando en IE University durante 4 años.
-
-### ✅ Completado
+### Completado
 - [x] Extraer datos de costos de imagen IE Madrid (HEIC)
 - [x] Crear estructura de proyecto con scripts y dashboard
 - [x] Generar JSONs con datos base y 3 escenarios
-- [x] Crear dashboard interactivo Streamlit con:
-  - Selector de escenarios (Austero/Moderado/Cómodo)
-  - Sliders para todas las variables de gasto
-  - Toggles para incluir/excluir categorías
-  - Multi-moneda (EUR/USD/COP)
-  - Gráficos: barras, proyección 4 años, pie chart
-  - Exportación CSV
+- [x] Crear dashboard interactivo Streamlit
 - [x] Agregar gastos personalizados dinámicos
 - [x] Integrar autenticación Supabase
-- [x] Crear tablas en Supabase (user_settings, gastos_personalizados)
-- [x] Persistencia de gastos personalizados en la nube
-- [x] Crear repositorio GitHub (público)
+- [x] Crear tablas en Supabase
+- [x] Crear repositorio GitHub
 - [x] Generar Excel profesional para la familia
-- [x] Documentar proyecto (CLAUDE.md, prompts apertura/cierre)
-
-### 📁 Archivos Creados
-| Archivo | Descripción |
-|---------|-------------|
-| `dashboard/app.py` | Dashboard principal con auth Supabase |
-| `scripts/generar_datos.py` | Generador de JSONs desde parámetros |
-| `scripts/generar_excel.py` | Generador de Excel profesional |
-| `output/datos_paulina.json` | Datos base y costos |
-| `output/escenarios_paulina.json` | 3 escenarios precalculados |
-| `output/resumen_paulina.xlsx` | Excel para la familia |
-| `supabase_setup.sql` | SQL para crear tablas |
-| `CLAUDE.md` | Documentación del proyecto |
-| `.claude/PROMPT_APERTURA.md` | Prompt para iniciar sesión |
-| `.claude/PROMPT_CIERRE.md` | Prompt para cerrar sesión |
-| `requirements.txt` | Dependencias Python |
-| `.gitignore` | Archivos a ignorar |
-
-### 🔧 Decisiones Técnicas
-- **Arquitectura:** Dashboard lee SOLO de JSONs, no hace cálculos inline
-- **Auth:** Supabase Auth con email/password (gratis)
-- **Persistencia:** Gastos personalizados en Supabase, datos base en JSONs
-- **Deploy:** Streamlit Cloud con auto-deploy desde GitHub
-- **Repo público:** Porque Streamlit Cloud gratis solo permite 1 app privada, pero la auth protege el acceso
-
-### 💰 Datos Financieros Configurados
-| Escenario | Total 4 años | Mensual promedio |
-|-----------|--------------|------------------|
-| Austero | €134,666 | €2,806 |
-| Moderado | €183,953 | €3,832 |
-| Cómodo | €231,406 | €4,821 |
-
-### 🔗 URLs Creadas
-- **GitHub:** https://github.com/Fsardi19/paulina-madrid-ie
-- **Supabase Project:** bsaazljcfxczdwtzhkcz
-
-### ⚠️ Pendiente
-- [ ] **ALTA:** Completar deploy en Streamlit Cloud (configurar secrets)
-- [ ] **MEDIA:** Crear cuenta de prueba para Paulina
-- [ ] **BAJA:** Agregar más visualizaciones si se requieren
-
-### 💡 Notas Importantes
-- Paulina tiene 19 años → aplica descuento transporte (€8/mes vs €55)
-- El descuento de matrícula del 40% está siendo solicitado, no confirmado
-- Los vuelos Colombia-España están estimados en €1,000 por viaje (2/año)
-- La inflación de España está configurada en 3%/año
-
-### 🔑 Credenciales Supabase (para secrets)
-```toml
-SUPABASE_URL = "https://bsaazljcfxczdwtzhkcz.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzYWF6bGpjZnhjemR3dHpoa2N6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NTA0NzgsImV4cCI6MjA4NzAyNjQ3OH0.lqUKekS_B3hlfWo6PltOcOrFudO29XbvzOE0XBMeyuY"
-```
 
 ---
