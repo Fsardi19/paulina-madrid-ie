@@ -57,6 +57,8 @@ def init_session_state():
         st.session_state.gastos_personalizados = []
     if "user_settings" not in st.session_state:
         st.session_state.user_settings = {}
+    if "ajustes_guardados" not in st.session_state:
+        st.session_state.ajustes_guardados = {}
 
 init_session_state()
 
@@ -173,6 +175,9 @@ def load_user_data(email):
         settings = supabase.table("user_settings").select("*").eq("user_email", email).execute()
         if settings.data:
             st.session_state.user_settings = settings.data[0]
+            # Cargar ajustes de sliders guardados
+            if settings.data[0].get("ajustes"):
+                st.session_state.ajustes_guardados = settings.data[0]["ajustes"]
 
         # Cargar gastos personalizados
         gastos = supabase.table("gastos_personalizados").select("*").eq("user_email", email).order("created_at").execute()
@@ -226,6 +231,10 @@ def save_user_settings(email, settings):
         }).execute()
     except Exception as e:
         st.error(f"Error al guardar configuración: {e}")
+
+def get_saved_value(key, default):
+    """Obtiene valor guardado o usa el default del escenario"""
+    return st.session_state.ajustes_guardados.get(key, default)
 
 # ============================================================
 # VERIFICAR AUTENTICACION
@@ -385,65 +394,98 @@ costos = DATOS["costos_base"]
 ajustes = {}
 
 ajustes["vivienda"] = st.sidebar.slider("Vivienda", costos["vivienda"]["min"], costos["vivienda"]["max"],
-                                        desglose["vivienda"]["valor"], 50, format="€%d")
+                                        get_saved_value("vivienda", desglose["vivienda"]["valor"]), 50, format="€%d")
 
 with st.sidebar.expander("⚡ Servicios", expanded=False):
     ajustes["electricidad"] = st.slider("Electricidad", costos["electricidad"]["min"], costos["electricidad"]["max"],
-                                        desglose["electricidad"]["valor"], 5, format="€%d")
+                                        get_saved_value("electricidad", desglose["electricidad"]["valor"]), 5, format="€%d")
     ajustes["gas_calefaccion"] = st.slider("Gas/Calefacción", costos["gas_calefaccion"]["min"], costos["gas_calefaccion"]["max"],
-                                           desglose["gas_calefaccion"]["valor"], 5, format="€%d")
+                                           get_saved_value("gas_calefaccion", desglose["gas_calefaccion"]["valor"]), 5, format="€%d")
     ajustes["agua"] = st.slider("Agua", costos["agua"]["min"], costos["agua"]["max"],
-                                desglose["agua"]["valor"], 5, format="€%d")
+                                get_saved_value("agua", desglose["agua"]["valor"]), 5, format="€%d")
     ajustes["internet"] = st.slider("Internet", costos["internet"]["min"], costos["internet"]["max"],
-                                    desglose["internet"]["valor"], 5, format="€%d")
+                                    get_saved_value("internet", desglose["internet"]["valor"]), 5, format="€%d")
 
 ajustes["celular"] = st.sidebar.slider("Celular", costos["celular"]["min"], costos["celular"]["max"],
-                                       desglose["celular"]["valor"], 5, format="€%d")
+                                       get_saved_value("celular", desglose["celular"]["valor"]), 5, format="€%d")
 ajustes["supermercado"] = st.sidebar.slider("Supermercado", costos["supermercado"]["min"], costos["supermercado"]["max"],
-                                            desglose["supermercado"]["valor"], 25, format="€%d")
+                                            get_saved_value("supermercado", desglose["supermercado"]["valor"]), 25, format="€%d")
 
 es_menor_26 = DATOS["perfil"]["menor_26"]
 ajustes["transporte"] = 8 if es_menor_26 else 55
 st.sidebar.info(f"Transporte: €{ajustes['transporte']}/mes {'(Abono Joven)' if es_menor_26 else ''}")
 
 ajustes["seguro_medico"] = st.sidebar.slider("Seguro Médico", costos["seguro_medico"]["min"], costos["seguro_medico"]["max"],
-                                             desglose["seguro_medico"]["valor"], 5, format="€%d")
+                                             get_saved_value("seguro_medico", desglose["seguro_medico"]["valor"]), 5, format="€%d")
 
 st.sidebar.markdown("---")
 
 # Opcionales
 st.sidebar.markdown("### 🎭 Gastos Opcionales")
-incluir_ocio = st.sidebar.toggle("Ocio y Cultura", value=desglose["ocio_cultura"]["incluido"])
+incluir_ocio = st.sidebar.toggle("Ocio y Cultura", value=get_saved_value("incluir_ocio", desglose["ocio_cultura"]["incluido"]))
 ajustes["ocio_cultura"] = st.sidebar.slider("Monto ocio", costos["ocio_cultura"]["min"], costos["ocio_cultura"]["max"],
-                                            desglose["ocio_cultura"]["valor"], 25, format="€%d") if incluir_ocio else 0
+                                            get_saved_value("ocio_cultura", desglose["ocio_cultura"]["valor"]), 25, format="€%d") if incluir_ocio else 0
 
-incluir_ropa = st.sidebar.toggle("Ropa/Personal", value=desglose["ropa_personal"]["incluido"])
+incluir_ropa = st.sidebar.toggle("Ropa/Personal", value=get_saved_value("incluir_ropa", desglose["ropa_personal"]["incluido"]))
 ajustes["ropa_personal"] = st.sidebar.slider("Monto ropa", costos["ropa_personal"]["min"], costos["ropa_personal"]["max"],
-                                             desglose["ropa_personal"]["valor"], 10, format="€%d") if incluir_ropa else 0
+                                             get_saved_value("ropa_personal", desglose["ropa_personal"]["valor"]), 10, format="€%d") if incluir_ropa else 0
 
-incluir_materiales = st.sidebar.toggle("Materiales Estudio", value=desglose["materiales_estudio"]["incluido"])
+incluir_materiales = st.sidebar.toggle("Materiales Estudio", value=get_saved_value("incluir_materiales", desglose["materiales_estudio"]["incluido"]))
 ajustes["materiales_estudio"] = st.sidebar.slider("Monto materiales", costos["materiales_estudio"]["min"], costos["materiales_estudio"]["max"],
-                                                  desglose["materiales_estudio"]["valor"], 10, format="€%d") if incluir_materiales else 0
+                                                  get_saved_value("materiales_estudio", desglose["materiales_estudio"]["valor"]), 10, format="€%d") if incluir_materiales else 0
 
 st.sidebar.markdown("---")
 
 # Vuelos
 st.sidebar.markdown("### ✈️ Vuelos Colombia")
-incluir_vuelos = st.sidebar.toggle("Incluir vuelos", value=True)
-ajustes["vuelos_por_ano"] = st.sidebar.slider("Viajes por año", 0, 4, 2) if incluir_vuelos else 0
+incluir_vuelos = st.sidebar.toggle("Incluir vuelos", value=get_saved_value("incluir_vuelos", True))
+ajustes["vuelos_por_ano"] = st.sidebar.slider("Viajes por año", 0, 4, get_saved_value("vuelos_por_ano", 2)) if incluir_vuelos else 0
 
 st.sidebar.markdown("---")
 
 # Emergencias
 st.sidebar.markdown("### 🛡️ Fondo Emergencia")
-incluir_emergencias = st.sidebar.toggle("Incluir fondo", value=True)
-ajustes["pct_emergencias"] = st.sidebar.slider("% del total", 0, 15, 5, format="%d%%") / 100 if incluir_emergencias else 0
+incluir_emergencias = st.sidebar.toggle("Incluir fondo", value=get_saved_value("incluir_emergencias", True))
+ajustes["pct_emergencias"] = st.sidebar.slider("% del total", 0, 15, get_saved_value("pct_emergencias_int", 5), format="%d%%") / 100 if incluir_emergencias else 0
 
 st.sidebar.markdown("---")
 
 # Inflacion
 st.sidebar.markdown("### 📈 Proyección")
-inflacion = st.sidebar.slider("Inflación anual %", 0.0, 8.0, 3.0, 0.5) / 100
+inflacion = st.sidebar.slider("Inflación anual %", 0.0, 8.0, get_saved_value("inflacion_pct", 3.0), 0.5) / 100
+
+st.sidebar.markdown("---")
+
+# Botón para guardar configuración
+st.sidebar.markdown("### 💾 Guardar Cambios")
+if st.sidebar.button("💾 Guardar mi configuración", use_container_width=True, type="primary"):
+    config_to_save = {
+        "vivienda": ajustes["vivienda"],
+        "electricidad": ajustes.get("electricidad", desglose["electricidad"]["valor"]),
+        "gas_calefaccion": ajustes.get("gas_calefaccion", desglose["gas_calefaccion"]["valor"]),
+        "agua": ajustes.get("agua", desglose["agua"]["valor"]),
+        "internet": ajustes.get("internet", desglose["internet"]["valor"]),
+        "celular": ajustes["celular"],
+        "supermercado": ajustes["supermercado"],
+        "seguro_medico": ajustes["seguro_medico"],
+        "ocio_cultura": ajustes["ocio_cultura"],
+        "ropa_personal": ajustes["ropa_personal"],
+        "materiales_estudio": ajustes["materiales_estudio"],
+        "incluir_ocio": incluir_ocio,
+        "incluir_ropa": incluir_ropa,
+        "incluir_materiales": incluir_materiales,
+        "incluir_vuelos": incluir_vuelos,
+        "vuelos_por_ano": ajustes["vuelos_por_ano"],
+        "incluir_emergencias": incluir_emergencias,
+        "pct_emergencias_int": int(ajustes.get("pct_emergencias", 0.05) * 100),
+        "inflacion_pct": inflacion * 100
+    }
+    if supabase:
+        save_user_settings(st.session_state.user_email, {"ajustes": config_to_save})
+        st.session_state.ajustes_guardados = config_to_save
+        st.sidebar.success("✅ Configuración guardada")
+    else:
+        st.sidebar.warning("Modo local - no se puede guardar")
 
 st.sidebar.markdown("---")
 
