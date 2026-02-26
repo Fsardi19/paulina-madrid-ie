@@ -1,65 +1,56 @@
 # Progreso - Paulina Madrid IE
 
-**Última actualización:** 2026-02-23
+**Última actualización:** 2026-02-26
 **Actualizado por:** Claude Code
 
-## Estado General: 🟢 Completado y Desplegado
+## Estado General: 🟢 Completado y Funcionando
 
 ## Resumen Ejecutivo
-Dashboard de presupuesto completo con autenticación Supabase, persistencia de configuración en la nube, 3 escenarios financieros y gastos personalizados. Desplegado y funcional en Streamlit Cloud.
+Dashboard de presupuesto completo con autenticación Supabase, persistencia de configuración, 3 escenarios financieros y gastos personalizados. Desplegado en Streamlit Cloud con 3 usuarios activos.
 
 ---
 
-## Componentes
+## Funcionalidades
 
-### Completados
-| Componente | Fecha | Estado |
-|------------|-------|--------|
-| Estructura del proyecto | 2026-02-18 | Completado |
-| Scripts generadores (JSONs, Excel) | 2026-02-18 | Completado |
-| Dashboard Streamlit | 2026-02-18 | Completado |
-| Autenticación Supabase | 2026-02-18 | Completado |
-| Gastos personalizados | 2026-02-18 | Completado |
-| Multi-moneda (EUR/USD/COP) | 2026-02-18 | Completado |
-| Repositorio GitHub | 2026-02-18 | Completado |
-| Tablas Supabase | 2026-02-18 | Completado |
-| Documentación (CLAUDE.md) | 2026-02-18 | Completado |
-| Deploy Streamlit Cloud | 2026-02-23 | Completado |
-| Fix RLS para registro | 2026-02-23 | Completado |
-| Guardar config de sliders | 2026-02-23 | Completado |
-| Usuario Paulina creado | 2026-02-23 | Completado |
-
-### Pendiente (Opcional)
-| Feature | Prioridad | Descripción |
-|---------|-----------|-------------|
-| Notificaciones por email | Baja | Alertas de cambios |
-| Exportar PDF | Baja | Resumen descargable en PDF |
-| Comparador visual escenarios | Baja | Side-by-side de los 3 escenarios |
+| Feature | Estado | Descripción |
+|---------|--------|-------------|
+| Dashboard interactivo | ✅ | Sliders, gráficos, KPIs |
+| 3 Escenarios | ✅ | Austero, Moderado, Cómodo |
+| Multi-moneda | ✅ | EUR, USD, COP |
+| Autenticación | ✅ | Supabase Auth (email/password) |
+| Gastos personalizados | ✅ | Se guardan automáticamente |
+| Guardar config sliders | ✅ | Botón "Guardar mi configuración" |
+| Cambiar escenarios | ✅ | Botón "Aplicar [Escenario]" |
+| Exportar CSV | ✅ | Descarga proyección |
 
 ---
 
 ## URLs y Recursos
 
-| Recurso | URL/ID |
-|---------|--------|
-| Dashboard Live | https://fsardi19-paulina-madrid-ie-dashboardapp.streamlit.app |
+| Recurso | URL |
+|---------|-----|
+| **Dashboard Live** | https://fsardi19-paulina-madrid-ie-dashboardapp.streamlit.app |
 | GitHub | https://github.com/Fsardi19/paulina-madrid-ie |
 | Supabase | https://supabase.com/dashboard/project/bsaazljcfxczdwtzhkcz |
-| Project ID Supabase | bsaazljcfxczdwtzhkcz |
 
 ---
 
-## Credenciales
+## Usuarios Activos
 
-### Supabase
+| Email | Nombre | Config Guardada |
+|-------|--------|-----------------|
+| paulinatrianaq@icloud.com | Paulina | ✅ |
+| ana.quijanob@gmail.com | - | ✅ |
+| fsardi@biodiversal.com | - | ✅ |
+
+---
+
+## Credenciales Supabase
+
 ```
 SUPABASE_URL = "https://bsaazljcfxczdwtzhkcz.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzYWF6bGpjZnhjemR3dHpoa2N6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NTA0NzgsImV4cCI6MjA4NzAyNjQ3OH0.lqUKekS_B3hlfWo6PltOcOrFudO29XbvzOE0XBMeyuY"
 ```
-
-### Usuario Paulina
-- Email: paulinatrianaq@icloud.com
-- Estado: Confirmado manualmente en Supabase
 
 ---
 
@@ -71,45 +62,23 @@ SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 | **Moderado** | **€183,953** | **€3,832** |
 | Cómodo | €231,406 | €4,821 |
 
-**Ahorro con beca 40%:** ~€46,400 en 4 años
-
----
-
-## Arquitectura
-
-```
-┌─────────────────┐     ┌──────────────────┐
-│  Streamlit      │────▶│  JSONs (datos)   │
-│  Cloud          │     │  output/*.json   │
-└────────┬────────┘     └──────────────────┘
-         │
-         ▼
-┌─────────────────┐
-│    Supabase     │
-│  - Auth         │
-│  - user_settings│
-│  - gastos_pers. │
-└─────────────────┘
-```
-
 ---
 
 ## Notas Técnicas
 
-- **RLS user_settings:** DESACTIVADO (permite registro sin auth previa)
-- **RLS gastos_personalizados:** ACTIVADO (usuarios solo ven sus gastos)
-- **App Streamlit Cloud:** Configurada como PÚBLICA
-- **Protección:** Autenticación Supabase (email/password)
-- **Auto-deploy:** Push a main → deploy automático
+- **Hosting:** Streamlit Cloud (gratis, siempre activo)
+- **Auth:** Supabase Auth - app pública pero contenido protegido
+- **RLS:** Desactivado en user_settings, activado en gastos_personalizados
+- **Auto-deploy:** Push a main → deploy automático en ~1 min
 
 ---
 
-## Para Próxima Sesión
+## Pendiente (Opcional, Baja Prioridad)
 
-Si necesitas continuar el proyecto:
-1. Lee `CLAUDE.md` para reglas del proyecto
-2. Lee `.claude/SESSION_LOG.md` para historial
-3. El dashboard está funcional en la URL de arriba
-4. Para cambios: editar → commit → push (deploy automático)
+| Feature | Descripción |
+|---------|-------------|
+| Exportar PDF | Resumen descargable |
+| Comparador escenarios | Vista side-by-side |
+| Notificaciones email | Alertas de cambios |
 
 ---
