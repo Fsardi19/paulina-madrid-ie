@@ -225,16 +225,22 @@ def delete_gasto(gasto_id):
 def save_user_settings(email, settings):
     """Guarda configuración del usuario"""
     try:
-        supabase.table("user_settings").upsert({
-            "user_email": email,
-            **settings
-        }).execute()
+        # Usar update en lugar de upsert para evitar conflicto de clave única
+        supabase.table("user_settings").update(settings).eq("user_email", email).execute()
     except Exception as e:
         st.error(f"Error al guardar configuración: {e}")
 
 def get_saved_value(key, default):
     """Obtiene valor guardado o usa el default del escenario"""
-    return st.session_state.ajustes_guardados.get(key, default)
+    value = st.session_state.ajustes_guardados.get(key, default)
+    # Asegurar que el tipo coincida con el default
+    if isinstance(default, int) and not isinstance(default, bool):
+        return int(value) if value is not None else default
+    elif isinstance(default, float):
+        return float(value) if value is not None else default
+    elif isinstance(default, bool):
+        return bool(value) if value is not None else default
+    return value
 
 # ============================================================
 # VERIFICAR AUTENTICACION
@@ -360,6 +366,16 @@ st.sidebar.markdown("### 📊 Escenario Base")
 escenario_sel = st.sidebar.selectbox("Cargar preset", ["Moderado", "Austero", "Comodo"], index=0)
 escenario_key = escenario_sel.lower()
 escenario_actual = ESCENARIOS["escenarios"][escenario_key]
+
+# Botón para aplicar el escenario seleccionado (resetear valores guardados)
+if st.sidebar.button(f"🔄 Aplicar {escenario_sel}", use_container_width=True):
+    st.session_state.ajustes_guardados = {}  # Limpiar valores guardados
+    st.rerun()
+
+if st.session_state.ajustes_guardados:
+    st.sidebar.caption("💾 Usando tu configuración guardada")
+else:
+    st.sidebar.caption(f"📊 Usando preset {escenario_sel}")
 
 st.sidebar.markdown("---")
 
